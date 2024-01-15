@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOOD SNAP</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fcfefb;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar h1 {
+        color: #fff;
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .logo {
+        display: flex; /* Center-align the logo */
+        align-items: center; /* Center-align the logo */
+      }
+
+      .logo img {
+        width: 50px; /* Make the logo smaller */
+        height: 50px; /* Make the logo smaller */
+        margin-right: 10px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 50px 0;
+      }
+      .info-section {
+        margin-right: 200px;
+        margin-left: 210px;
+        text-align: left;
+        flex-basis: 100%; /* Full width for small screens */
+        margin-top: 20px; /* Reduced margin top */
+      }
+
+      h1 {
+        color: #333;
+        font-size: 35px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: #666;
+      }
+
+      button {
+        background-color: #58b368;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 50px;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #3d8b50;
+      }
+
+      .food-images {
+        width: 400px; /* Make the image bigger */
+        height: 400px; /* Make the image bigger */
+        display: flex;
+        animation: slide 20s linear infinite;
+      }
+
+      /* Added the missing closing brace for @keyframes slide */
+      @keyframes slide {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="food-snap-card">
+        <div class="info-section">
+          <h1>FoodSnap</h1>
+          <p>
+            Introducing FoodSnap—a revolutionary solution at your fingertips for
+            making informed, health-conscious choices effortlessly. Say goodbye
+            to guesswork and hello to instant insights! Capture a quick snapshot
+            of your packaged food, and let FoodSnap work its magic. Seamlessly
+            integrating cutting-edge technology with nutritional expertise, this
+            app goes beyond just recognizing the label. It delves into the core,
+            providing you with a comprehensive breakdown of its health impact.
+            But it doesn’t stop there. FoodSnap empowers you with personalized
+            suggestions and alternatives tailored to your preferences. Whether
+            you're tracking calories, aiming for specific macros, or navigating
+            food allergies, this intuitive tool simplifies your journey towards
+            a healthier lifestyle. Explore a treasure trove of nutritional
+            knowledge, all condensed into a sleek, user-friendly interface.
+            Discover the hidden ingredients, understand the impact on your
+            well-being, and make choices that align with your health goals
+            effortlessly. 
+            <p>
+              Snap a photo of your packaged food, get instant health
+              insights. Make informed choices effortlessly.
+            </p>
+           
+          </p>
+          <p>Eat smarter with us!</p>
+          <form method="POST" enctype="multipart/form-data">
+            <input
+              type="file"
+              name="image"
+              style="display: none;"
+              id="imageUpload"
+            />
+            <button
+              type="button"
+              onclick="document.getElementById('imageUpload').click();"
+            >
+              Upload Image
+            </button>
+            <button type="submit" onclick="processImage();">Process!!!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-images">
+      <!-- Add your image elements here -->
+     
+      <img
+        src="{{ url_for('static', filename='trp.png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      <img
+        src="{{ url_for('static', filename='mza.png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      <img
+        src="{{ url_for('static', filename='uploaded_image.png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      <img
+        src="{{ url_for('static', filename='bournvitt.png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      <img
+      src="{{ url_for('static', filename='image-removebg-preview (1).png') }}"
+      alt="Uploaded Image"
+      margin-right="5px"
+    />
+    </div>
+
+    <script>
+      // Function to show the loading screen and then redirect to the result page
+      function processImage() {
+        // Show the loading screen
+        document.getElementById("loading-screen").style.display = "block";
+
+        // After 3 seconds, redirect to the result page
+        setTimeout(function () {
+          window.location.href = "result.html"; // Replace 'result.html' with your actual result page URL
+        }, 7000); // 3000 milliseconds (3 seconds)
+      }
+    </script>
+
+    <div id="loading-screen" style="display: none;">
+      <div class="loading-bar">
+        <div class="bar"></div>
+      </div>
+    </div>
+  </body>
+</html>

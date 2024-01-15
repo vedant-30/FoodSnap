@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to FoodSnap</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .wrapper {
+        text-align: center;
+        background: white;
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .input-field {
+        padding: 10px;
+        margin: 20px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 200px;
+      }
+      .go-button {
+        padding: 10px 20px;
+        background-color: #58b368;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+      .go-button:hover {
+        background-color: #3d8b50;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Welcome to FoodSnap</h1>
+      <input
+        class="input-field"
+        type="text"
+        placeholder="Enter your Name"
+        id="nameInput"
+      />
+
+      <button class="go-button" onclick="goToNextPage()">Go!</button>
+    </div>
+
+    <script>
+      function goToNextPage() {
+        var name = document.getElementById("nameInput").value;
+
+        if (name) {
+          // Send a GET request to the server with the name as a query parameter
+          window.location.href = "/index?name=" + encodeURIComponent(name);
+        } else {
+          alert("Please enter your name.");
+        }
+      }
+    </script>
+  </body>
+</html>

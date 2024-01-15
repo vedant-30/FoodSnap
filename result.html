@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOOD SNAP</title>
+    <style>
+                  body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f6f7f6;
+                    margin: 0;
+                    padding: 0;
+                  }
+
+
+
+                  .container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 50px 0;
+                    margin-top: 30px;
+                  }
+                  .emoji{
+                    margin-left: 650px;
+                  }
+                  .food-snap-card {
+                    background-color: #ffffff;
+                    width: 80%;
+                    border-radius: 15px;
+                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    display: flex;
+                    overflow: hidden;
+                    margin: 0 auto;
+                  }
+
+                  .info-section {
+                    text-align: left;
+                    flex-basis: 50%;
+                  }
+
+                  .health-bar {
+                    width: 100%;
+                    height: 20px;
+                    border-radius: 10px;
+                    margin-top: 20px;
+                    background-color: lightgray;
+                    display: flex;
+                  }
+                  .filled-bar {
+        height: 100%;
+        border-radius: 10px;
+        {% if result < 0 %}
+          background-color: rgba(255, 0, 0, 0.7); /* Red color for negative result */
+          width: {{ -result }}%; /* Absolute width value for negative result */
+        {% elif result < 100 %}
+          background-color: rgba(255, 255, 0, 0.7); /* Yellow color for healthy */
+          width: {{ result }}%; /* Width for healthy result */
+        {% else %}
+          background-color: rgba(0, 255, 0, 0.7); /* Green color for very healthy */
+          width: {{ result }}%; /* Width for very healthy result */
+        {% endif %}
+      }
+
+
+
+                  .unfilled-bar {
+                    flex: {{ 100 - result }}%;
+                    height: 100%;
+                    border-radius: 10px;
+                    background-color: rgba(211, 211, 211, 0.7);
+                  }
+
+                  h1 {
+                    color: #333;
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                  }
+
+                  p {
+                    margin-bottom: 20px;
+                    color: #666;
+                  }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="food-snap-card">
+        <div class="info-section">
+          <h1>FoodSnap</h1>
+          <p>Here are your Results: {{result}}</p>
+          {% if result >= 200 %}
+
+          <p>Classification: Very Healthy</p>
+          <p>
+            {% if name %} {{ name }} {% endif %} You can Surely Eat This !!!...
+          </p>
+          {% elif result >= 100 %}
+          <p>Classification: Healthy</p>
+          <p>
+            {% if name %} {{ name }} {% endif %} You can Eat this !!!...
+          </p>
+          {% elif result >= 40 %}
+          <p>Classification: Moderate</p>
+          <p>
+            {% if name %} {{ name }} {% endif %} You can Eat This Once a while
+            !!!...
+          </p>
+          {% else %}
+          <p>Classification: Unhealthy</p>
+          <p>
+            {% if name %} {{ name }} {% endif %} Please Don't Eat This !!!...
+          </p>
+          {% endif %}
+
+          <div class="health-bar">
+            <div class="filled-bar"></div>
+            <div class="unfilled-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="emoji">
+      {% if result >= 200 %}
+      <img
+        src="{{ url_for('static', filename='image-removebg-preview (5).png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      {% elif result >= 100 %}
+      <img
+        src="{{ url_for('static', filename='image-removebg-preview (2).png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      {% elif result >= 40 %}
+      <img
+        src="{{ url_for('static', filename='image-removebg-preview (4).png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      {% else %}
+      <img
+        src="{{ url_for('static', filename='image-removebg-preview (3).png') }}"
+        alt="Uploaded Image"
+        margin-right="5px"
+      />
+      {% endif %}
+    </div>
+  </body>
+</html>
